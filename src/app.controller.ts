@@ -6,18 +6,18 @@ import { AuthService } from './auth/auth.service'
 import { Response } from 'express'
 
 const API_DEFAULT_PREFIX = '/api/v1/'
-@Controller()
+@Controller(API_DEFAULT_PREFIX)
 export class AppController {
   constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
-  @Post(API_DEFAULT_PREFIX + 'auth/login')
+  @Post('auth/login')
   async login(@Request() req, @Res() res: Response) {
     return this.authService.login(req.user, res)
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(API_DEFAULT_PREFIX + 'profile')
+  @Get('profile')
   getProfile(@Request() req) {
     return req.user
   }
