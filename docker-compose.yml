@@ -1,9 +1,40 @@
-version: "3"
-
+version: '3.8'
 services:
-  mongodb:
-    image: mongo:latest
-    environment:
-      - MONGODB_DATABASE="mongodb+srv://MyMongoDBUser:Abcde@12345@cluster0.odsw4.mongodb.net/?retryWrites=true&w=majority"
-    ports:
-      - 27017:27017
+    dev:
+        container_name: api_communitor
+        image: api_communitor:1.0.0
+        build:
+            context: .
+            target: development
+            dockerfile: ./Dockerfile
+        command: npm install bcrypt@latest --save    
+        command: npm run start:debug
+        ports:
+            - 3000:3000
+            - 9229:9229
+        networks:
+            - nesjs-network
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+    prod:
+        container_name: nestjs_api_prod
+        image: nestjs-api-prod:1.0.0
+        build:
+            context: .
+            target: production
+            dockerfile: ./Dockerfile
+        command: npm run start:prod
+        ports:
+            - 3000:3000
+            - 9229:9229
+        networks:
+            - nesjs-network
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+
+networks:
+    nesjs-network:
