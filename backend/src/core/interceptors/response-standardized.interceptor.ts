@@ -4,14 +4,15 @@ import {
   ExecutionContext,
   CallHandler,
   Logger,
-} from '@nestjs/common'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
-import myCode from 'src/core/constants/my-code.constants';
+} from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import myCode from '../constants/my-code.constants';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
+export class ResponseStandardizedInterceptor implements NestInterceptor {
   private logger = new Logger('response');
+
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((response: any) => {
