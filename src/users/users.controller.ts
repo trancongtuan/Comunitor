@@ -17,7 +17,6 @@ import { LoggingInterceptor } from 'src/interceptor/logging.interceptor'
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post('users')
   async create(@Body() createCatDto: UersDto) {
     await this.userService.create(createCatDto)
