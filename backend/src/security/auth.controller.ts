@@ -10,7 +10,7 @@ import { SuccessResponse } from '../core/response/success-response';
 import { ParamValidatorPipe } from '../core/pipes/param-validator.pipe';
 import { LoginVm } from './vm/login.vm';
 
-@Controller('api')
+@Controller('api/v1/')
 export class AuthController {
   private logger = new Logger('auth');
 
