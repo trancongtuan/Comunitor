@@ -54,42 +54,37 @@ export class AuthGuard implements CanActivate {
         appConstants._PERMISSION,
         context.getHandler(),
       );
-        if ( permissions ) {
-          return true
-        } 
-        return false
-
-      // if (permissions !== undefined) {
-      //   const authorize = await this.getListPermissionOfUser(user);
-      //   if (Array.isArray(permissions)) {
-      //     for (const permission of permissions) {
-      //       this.log.debug(permission);
-      //       this.log.debug(typeof permission);
-      //       if (typeof permission !== 'string') {
-      //         throw new HttpException(
-      //           '_PERMISSION_SET_TO_META_DATA_INVALID',
-      //           200,
-      //         );
-      //       }
-      //     }
-      //     const mergeAuthorizeWithPermissionInput = intersection(
-      //       authorize,
-      //       permissions,
-      //     );
-      //     if (mergeAuthorizeWithPermissionInput.length === 0) {
-      //       throw new HttpException('_FORBIDDEN', 200);
-      //     }
-      //   } else if (typeof permissions === 'string') {
-      //     const mergeAuthorizeWithPermissionInput = intersection(authorize, [
-      //       permissions,
-      //     ]);
-      //     if (mergeAuthorizeWithPermissionInput.length === 0) {
-      //       throw new HttpException('_FORBIDDEN', 200);
-      //     }
-      //   } else {
-      //     throw new HttpException('_PERMISSION_SET_TO_META_DATA_INVALID', 200);
-      //   }
-      // }
+      if (permissions !== undefined) {
+        const authorize = await this.getListPermissionOfUser(user);
+        if (Array.isArray(permissions)) {
+          for (const permission of permissions) {
+            this.log.debug(permission);
+            this.log.debug(typeof permission);
+            if (typeof permission !== 'string') {
+              throw new HttpException(
+                '_PERMISSION_SET_TO_META_DATA_INVALID',
+                200,
+              );
+            }
+          }
+          const mergeAuthorizeWithPermissionInput = intersection(
+            authorize,
+            permissions,
+          );
+          if (mergeAuthorizeWithPermissionInput.length === 0) {
+            throw new HttpException('_FORBIDDEN', 200);
+          }
+        } else if (typeof permissions === 'string') {
+          const mergeAuthorizeWithPermissionInput = intersection(authorize, [
+            permissions,
+          ]);
+          if (mergeAuthorizeWithPermissionInput.length === 0) {
+            throw new HttpException('_FORBIDDEN', 200);
+          }
+        } else {
+          throw new HttpException('_PERMISSION_SET_TO_META_DATA_INVALID', 200);
+        }
+      }
     }
 
     return true;

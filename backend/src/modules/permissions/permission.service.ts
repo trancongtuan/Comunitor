@@ -25,7 +25,7 @@ export class PermissionService {
   public async findPermissionByListId(
     ids: string[],
   ): Promise<PermissionDocument[]> {
-    return await this.permissionModel.find({ _id: { $in: ids } });
+    return await this.permissionModel.find({ groupName: { $in: ids } });
   }
 
   public async findPermissionByGroupCode(

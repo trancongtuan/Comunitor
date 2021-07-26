@@ -15,7 +15,7 @@ export class RoleService {
   }
 
   async findById(id: string): Promise<RoleDocument | null> {
-    return this.roleModel.findOne({ _id: id });
+    return this.roleModel.findOne({ roleName: id });
   }
 
   async findByRoleCode(roleCode: string): Promise<RoleDocument | null> {
