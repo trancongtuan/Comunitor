@@ -32,7 +32,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const keysOfResponse = Object.keys(errorResponse);
     if (keysOfResponse.length > 0) {
       for (const key of keysOfResponse) {
-        if ( 
+        if (
           errorResponse[key] === null ||
           errorResponse[key] === myCode._UNKNOWN.numberCode ||
           errorResponse[key] === myCode._UNKNOWN.stringCode

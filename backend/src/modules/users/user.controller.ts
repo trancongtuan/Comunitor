@@ -1,6 +1,5 @@
 import { ParamValidatorPipe } from './../../core/pipes/param-validator.pipe'
 import { Body, Controller, Post } from '@nestjs/common'
-import { API_DEFAULT_PREFIX } from 'src/common/type'
 import { UserVm } from 'src/core/data-type/user'
 import { UserService } from './user.service'
 import { UseGuards } from '@nestjs/common'
@@ -16,11 +15,12 @@ import { SuccessResponse } from 'src/core/response/success-response'
   name: 'Authorization',
   description: 'token',
 })
-@Controller(API_DEFAULT_PREFIX)
+@Controller('api/v1/')
 export class UsersController {
   constructor(private userService: UserService) {}
 
   @Post('user/create')
+  @UseGuards(AuthGuard)
   @UseFilters(new AllExceptionsFilter())
   @SetMetadata(appConstants._PERMISSION, ['va.mb.um.c'])
   async createUser(@Body(new ParamValidatorPipe()) body: UserVm) {

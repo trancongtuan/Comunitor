@@ -18,6 +18,10 @@ export class PermissionService {
     return await this.permissionModel.create(data);
   }
 
+  async createAll(data: any[]) {
+    return await this.permissionModel.create(data);
+  }
+
   public async findPermissionByListId(
     ids: string[],
   ): Promise<PermissionDocument[]> {
