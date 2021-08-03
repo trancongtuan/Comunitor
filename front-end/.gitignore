@@ -1,13 +1,8 @@
 # compiled output
-./backend/dist
-./front-end/dist
-./backend/node_modules
-./front-end/node_modules
-./backend/package.json
-./backend/package-lock.json
-./front-end/package.json
-./front-end/package-lock.json
-../.next
+/dist
+/node_modules
+/package-lock.json
+/.next
 
 # Logs
 logs
@@ -39,4 +34,3 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-node_modules
