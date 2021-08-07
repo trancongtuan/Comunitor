@@ -22,8 +22,12 @@
     "next": "11.0.1",
     "next-compose-plugins": "2.2.1",
     "next-images": "^1.3.1",
+    "next-redux-wrapper": "^7.0.2",
+    "next-seo": "^4.26.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-saga": "^1.1.3",
     "webpack": "^5.47.1"
   },
   "devDependencies": {
@@ -62,5 +66,34 @@
     "jest": "^27.0.6",
     "ts-jest": "^27.0.4",
     "typescript": "^4.3.5"
+  },
+  "next-unused": {
+    "alias": {
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ]
+    },
+    "debug": true,
+    "include": [
+      "components",
+      "lib",
+      "pages"
+    ],
+    "exclude": [],
+    "entrypoints": [
+      "pages"
+    ]
   }
 }
