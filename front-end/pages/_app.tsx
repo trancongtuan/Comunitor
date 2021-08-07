@@ -1,8 +1,7 @@
 import React, { FC, useEffect, Fragment } from 'react'
 import type { AppProps } from 'next/app'
-import {Provider} from 'react-redux';
 import { Head } from '@components/common'
-import  { configureStore }  from '../redux/store';
+import  { wrapper }  from '../redux/store';
 
 const Noop: FC = ({ children }) => <>{children}</>
 // const store = configureStore();
@@ -17,11 +16,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Fragment>
       <Head />
         <Layout pageProps={pageProps}>
-          {/* <Provider store = {store}> */}
           <Component {...pageProps} />
-          {/* </Provider > */}
         </Layout>
     </Fragment>
   )
 }
-export default MyApp;
+export default wrapper.withRedux(MyApp);

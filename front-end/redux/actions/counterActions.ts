@@ -5,7 +5,8 @@ export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
 
 //Action Creator
 export const incrementCounter = () => ({
-   type: INCREMENT_COUNTER
+   type: INCREMENT_COUNTER,
+   payload: 1
 });
 
 export const decrementCounter = () => ({

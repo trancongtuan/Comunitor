@@ -1,3 +1,4 @@
 export interface TypeCount {
-    value: number
+  page: string;
+  count: number;
 }

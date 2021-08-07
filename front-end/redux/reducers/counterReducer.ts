@@ -1,19 +1,27 @@
-import { TypeCount } from './../type';
-import {DECREMENT_COUNTER, INCREMENT_COUNTER} from '../actions/counterActions';
+import { AnyAction } from "redux";
+import { HYDRATE } from "next-redux-wrapper";
+import { SAGA_ACTION_SUCCESS } from "../saga/counterSaga";
+import { INCREMENT_COUNTER } from "redux/actions/counterActions";
 
-export const INITIAL_COUNT = {
-    value: 0
+export interface State {
+  page: string;
+  count: number;
 }
 
-const counterReducer = (state: TypeCount = INITIAL_COUNT, action) => {
-    switch (action.type) {
-        case INCREMENT_COUNTER:
-            return {...state, value: state.value + 1};
-        case DECREMENT_COUNTER:
-            return {...state, value: state.value - 1};
-        default:
-            return {...state};
-    }
-};
+export const initialState: State = { page: "", count: 0 };
 
-export default counterReducer;
+function rootReducer(state = initialState, action: AnyAction) {
+    debugger
+  switch (action.type) {
+    case HYDRATE:
+      return { ...state, ...action.payload };
+    case SAGA_ACTION_SUCCESS:
+      return { ...state, page: action.data };
+    case INCREMENT_COUNTER:
+      return { ...state, count: state.count + action.payload };
+    default:
+      return state;
+  }
+}
+
+export default rootReducer;
