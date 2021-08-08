@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "redux/store";
 import { incrementCounter } from "../redux/actions/counterActions";
+import { Example } from  './children'
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const count = useSelector((state: AppState) => state.counter.count);
@@ -15,6 +16,9 @@ const Home: React.FC = () => {
   const decrementCounter = () => {
     setCounter(counter - 1);
   };
+  const listenChildren = (event) => {
+    alert(event)
+  }
   return (
     <div>
       <button onClick={incrementCounter1}>Increment</button>
@@ -22,6 +26,7 @@ const Home: React.FC = () => {
       <h1>
         {counter}, {count}
       </h1>
+      <Example count={count} listenTochildren={listenChildren}/>
     </div>
   );
 };
