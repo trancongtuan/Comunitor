@@ -11,7 +11,6 @@ export interface State {
 export const initialState: State = { page: "", count: 0 };
 
 function rootReducer(state = initialState, action: AnyAction) {
-    debugger
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload };

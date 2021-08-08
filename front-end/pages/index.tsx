@@ -1,34 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import { AppState } from "redux/store";
-import { incrementCounter } from "../redux/actions/counterActions";
-import { Example } from  './children'
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
-  const count = useSelector((state: AppState) => state.counter.count);
-  const [counter, setCounter] = useState(0);
-  //Updates the counter in state by +1
-  const incrementCounter1 = async () => {
-    dispatch(incrementCounter());
-  };
+  const router = useRouter();
+  const auth = useSelector((state: AppState) => state.auth.token);
+  useEffect(() => {
+    if (!auth) {
+      router.push({ pathname: "auth/Login" });
+    }
+  }, []);
 
-  //Updates the counter in state by  -1
-  const decrementCounter = () => {
-    setCounter(counter - 1);
-  };
-  const listenChildren = (event) => {
-    alert(event)
-  }
-  return (
-    <div>
-      <button onClick={incrementCounter1}>Increment</button>
-      <button onClick={decrementCounter}>Decrement</button>
-      <h1>
-        {counter}, {count}
-      </h1>
-      <Example count={count} listenTochildren={listenChildren}/>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Home;
