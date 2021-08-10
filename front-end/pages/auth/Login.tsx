@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest } from "redux/actions/Login";
+import LoginAction from "redux/actions/Login";
 import { AppState } from "redux/store";
 import { useRouter } from "next/router";
 
@@ -40,6 +40,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { token } = useSelector((state: AppState) => state.auth);
+  const login = new LoginAction()
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -48,7 +49,7 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    dispatch(loginRequest());
+    dispatch(login.loginRequest());
   };
 
   React.useEffect(()=> {

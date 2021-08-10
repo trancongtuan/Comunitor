@@ -1,17 +1,28 @@
+import { AxiosRequestConfig } from "axios";
+import { Api } from "redux/api/api";
+import { API_CONFIG } from "redux/type";
+
 //Action Types
 export const LOGIN_TYPE_REQUEST = "LOGIN_TYPE_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 
-//Action Creator
-export const loginRequest = () => ({
-   type: LOGIN_TYPE_REQUEST,
-   payload: false
-});
+export default class Login extends Api {
 
-//Action Creator
-export const loginSuccess = (data: boolean) => ({
-  type: LOGIN_SUCCESS,
-  payload: data
-});
+  /**
+   * Constructor
+   */
+  public constructor() {
+    super(API_CONFIG)
+  }
 
+  public loginRequest = () => ({
+    type: LOGIN_TYPE_REQUEST,
+    payload: false,
+  });
+
+  public loginSuccess = (data: boolean) => ({
+    type: LOGIN_SUCCESS,
+    payload: data,
+  });
+}

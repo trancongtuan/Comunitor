@@ -1,13 +1,14 @@
 
 import { put, takeEvery, throttle} from 'redux-saga/effects';
-import { loginSuccess, LOGIN_TYPE_REQUEST } from 'redux/actions/Login';
+import LoginAction, { LOGIN_TYPE_REQUEST } from 'redux/actions/Login';
 import { LoginRequestAction } from 'redux/type/Login';
 
 
 function* loginFlow(action: LoginRequestAction) {
   try {
+    const loginAction = new LoginAction()
     const { payload } = action
-    yield put(loginSuccess(!payload))
+    yield put(loginAction.loginSuccess(!payload))
   } catch (error) {
     // TODO
   }
