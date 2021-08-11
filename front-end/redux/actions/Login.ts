@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from "axios";
 import { Api } from "redux/api/api";
 import { API_CONFIG } from "redux/type";
 
