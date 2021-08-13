@@ -1,16 +1,24 @@
 
-import { put, takeEvery, throttle} from 'redux-saga/effects';
-import LoginAction, { LOGIN_TYPE_REQUEST } from 'redux/actions/Login';
+import { storeToLocalStorage } from 'pages/utils/localStorageService';
+import { Unpacked } from 'pages/utils/type-api';
+import { call, put, takeEvery} from 'redux-saga/effects';
+import { LOGIN_TYPE_REQUEST, loginSuccess, loginFailure } from 'redux/actions/Login';
 import { LoginRequestAction } from 'redux/type/Login';
+import LoginService from '../service/Login'
 
+function updateToken(tokenId: string) {
+  storeToLocalStorage('accessToken', tokenId);
+}
 
 function* loginFlow(action: LoginRequestAction) {
   try {
-    const loginAction = new LoginAction()
+    const loginService = new LoginService()
     const { payload } = action
-    yield put(loginAction.loginSuccess(!payload))
+    const { data } = yield call(loginService.login, payload.email, payload.password)
+    yield put(loginSuccess(data.response.tokenId))
+    yield call(updateToken, data.response.tokenId)
   } catch (error) {
-    // TODO
+    yield put(loginFailure(error.message))
   }
 }
 

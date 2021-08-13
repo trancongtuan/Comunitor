@@ -8,7 +8,7 @@ export class SuccessResponse {
       numberCode: myCode._SUCCESSFUL.numberCode,
       stringCode: myCode._SUCCESSFUL.stringCode,
       message: myCode._SUCCESSFUL.message,
-      data: data || null,
+      response: data || null,
       metaData: metaData || null,
     };
   }

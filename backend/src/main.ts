@@ -8,6 +8,7 @@ const logger: Logger = new Logger('main');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors()
   const options = new DocumentBuilder()
     .setTitle('RESTFUL API BY NESTJS BOILERPLATE')
     .setDescription('Sample project using nestjs')

@@ -29,7 +29,7 @@ export class Api {
         }
 
         return {
-          baseUrl: process.env.API_URL,
+          baseUrl: 'http://localhost:4001/api/v1/',
           ...config
         }
       })

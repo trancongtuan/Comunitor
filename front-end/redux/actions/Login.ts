@@ -1,27 +1,27 @@
-import { Api } from "redux/api/api";
-import { API_CONFIG } from "redux/type";
+import { LOGIN_FAILURE } from "redux/type/Login";
 
 //Action Types
 export const LOGIN_TYPE_REQUEST = "LOGIN_TYPE_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 
-export default class Login extends Api {
-
-  /**
-   * Constructor
-   */
-  public constructor() {
-    super(API_CONFIG)
-  }
-
-  public loginRequest = () => ({
+export function loginRequest(payload: { email: string; password: string }) {
+  return {
     type: LOGIN_TYPE_REQUEST,
-    payload: false,
-  });
+    payload,
+  };
+}
 
-  public loginSuccess = (data: boolean) => ({
+export function loginSuccess(token: string) {
+  return {
     type: LOGIN_SUCCESS,
-    payload: data,
-  });
+    payload: { token },
+  };
+}
+
+export function loginFailure(error: string) {
+  return {
+    type: LOGIN_FAILURE,
+    payload: error,
+  };
 }

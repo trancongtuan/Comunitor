@@ -3,7 +3,7 @@ import { AxiosRequestConfig } from "axios";
 export const API_CONFIG: AxiosRequestConfig = {
   // withCredentials: true,
   timeout: 30000,
-  baseURL: process.env.API_URL,
+  baseURL: 'http://localhost:4001/api/v1/',
   headers: {
     common: {
       'Cache-Control': 'no-cache, no-store, must-revalidate',
