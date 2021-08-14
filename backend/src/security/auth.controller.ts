@@ -1,4 +1,4 @@
-import { Body, Controller, Logger, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Logger, Post } from '@nestjs/common';
 import { UserService } from '../modules/users/user.service';
 import { UserNotFoundException } from '../core/exceptions/user-not-found.exception';
 import { UserStatusEnum } from '../core/enums/user_status.enum';
@@ -21,13 +21,13 @@ export class AuthController {
     const { login, password } = body;
     const user = await this.userService.findByLogin(login);
     if (user === null || user === undefined) {
-      throw new UserNotFoundException();
+      throw new HttpException(new UserNotFoundException(), HttpStatus.NOT_FOUND);
     }
     if (user.status === UserStatusEnum._BLOCK) {
-      throw new UserBlockException();
+      throw new HttpException(new UserBlockException(), HttpStatus.NOT_FOUND);
     }
     if (!compareSync(password, user.password)) {
-      throw new PasswordNotCorrectException();
+      throw new HttpException(new PasswordNotCorrectException(), HttpStatus.BAD_REQUEST);
     }
 
     const accInfo = {

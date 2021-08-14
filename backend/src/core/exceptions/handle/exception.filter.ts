@@ -4,32 +4,32 @@ import {
   ArgumentsHost,
   HttpException,
   Logger,
-} from '@nestjs/common';
-import myCode from '../../constants/my-code.constants';
-import { ErrorResponse } from '../../response/error-response.core';
-import { RequestInvalidException } from '../request-invalid.exception';
+} from '@nestjs/common'
+import myCode from '../../constants/my-code.constants'
+import { ErrorResponse } from '../../response/error-response.core'
+import { RequestInvalidException } from '../request-invalid.exception'
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  private logger = new Logger('Exception');
+  private logger = new Logger('Exception')
 
   catch(exception: unknown, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
+    const ctx = host.switchToHttp()
+    const response = ctx.getResponse()
     const code =
-      exception instanceof HttpException ? exception.getResponse() : '_UNKNOWN';
-    const responseCode = myCode[`${code}`];
-    let errorResponse = {};
+      exception instanceof HttpException ? exception.getResponse() : '_UNKNOWN'
+    const responseCode = myCode[`${code}`]
+    let errorResponse: { error?: { status: number } } = {}
     if (responseCode) {
       const error =
         exception instanceof RequestInvalidException
           ? exception.error
-          : '${exception}';
-      errorResponse = new ErrorResponse(responseCode, error);
+          : '${exception}'
+      errorResponse = new ErrorResponse(responseCode, error)
     } else {
-      errorResponse = new ErrorResponse({}, code);
+      errorResponse = new ErrorResponse({}, code)
     }
-    const keysOfResponse = Object.keys(errorResponse);
+    const keysOfResponse = Object.keys(errorResponse)
     if (keysOfResponse.length > 0) {
       for (const key of keysOfResponse) {
         if (
@@ -37,11 +37,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
           errorResponse[key] === myCode._UNKNOWN.numberCode ||
           errorResponse[key] === myCode._UNKNOWN.stringCode
         ) {
-          delete errorResponse[key];
+          delete errorResponse[key]
         }
       }
-      return response.status(200).json(errorResponse);
+      return response.status(errorResponse.error.status).json(errorResponse)
     }
-    return response.status(200).json(errorResponse);
+    return response.status(errorResponse.error.status).json(errorResponse)
   }
 }

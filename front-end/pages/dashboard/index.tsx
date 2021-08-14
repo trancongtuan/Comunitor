@@ -1,6 +1,7 @@
 import React from "react";
-import Image from 'next/image'
-const DashBoard: React.FC = () =>  {
+import Image from "next/image";
+import Loading from "@components/common/loading";
+const DashBoard: React.FC = () => {
   return (
     <>
       <h1>My Homepage</h1>
@@ -14,7 +15,7 @@ const DashBoard: React.FC = () =>  {
       />
       <p>Welcome to my homepage!</p>
     </>
-  )
-}
+  );
+};
 
 export default DashBoard;

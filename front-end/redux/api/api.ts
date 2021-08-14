@@ -1,5 +1,6 @@
 import isEmpty from 'lodash/isEmpty'
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { readRecord } from '../../pages/utils/localStorageService'
 
 /**
  * @class Api
@@ -18,7 +19,7 @@ export class Api {
       this.api = axios.create(config)
 
       this.api.interceptors.request.use(async(config: AxiosRequestConfig) => {
-        const accessToken = 'getAccessToken()'
+        const accessToken = readRecord('accessToken')
         if (!isEmpty(accessToken)) {
           const headers = {
             /* eslint no-unneeded-ternary: "error" */
@@ -41,6 +42,8 @@ export class Api {
           const statusCode = error.response && error.response.status
 
           switch (statusCode) {
+            case 400:
+              break
             case 401:
               break
             case 403:

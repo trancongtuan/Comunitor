@@ -97,6 +97,9 @@
       ],
       "@utils/*": [
         "utils/*"
+      ],
+      "@pages/*": [
+        "pages/*"
       ]
     },
     "debug": true,

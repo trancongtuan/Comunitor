@@ -21,6 +21,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useEffect } from "react";
+import { readRecord } from "pages/utils/localStorageService";
+import Loading from "@components/common/loading";
 
 function Copyright() {
   return (
@@ -83,7 +85,7 @@ export default function SignInSide() {
   const classes = useStyles();
   const router = useRouter();
   const dispatch = useDispatch();
-  const auth = useSelector((state: AppState) => state.auth.token);
+  const auth = useSelector((state: AppState) => state.auth);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -91,20 +93,21 @@ export default function SignInSide() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(loginRequest(values))
+      dispatch(loginRequest(values));
     },
   });
 
   useEffect(() => {
-    if (!auth) {
-      router.push({ pathname: "auth/Login" });
+    if (!readRecord("accessToken")) {
+      router.push({ pathname: "Login" });
     } else {
-      router.push({pathname: "dashboard"})
+      router.push({ pathname: "/dashboard" });
     }
-  }, []);
+  }, [auth.token]);
 
   return (
     <Grid container component="main" className={classes.root}>
+      <Loading loadingStatus={auth.loading}/>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
