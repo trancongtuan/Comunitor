@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { BottomNavigation } from "@material-ui/core";
+import { BottomNavigation, AppBar } from "@material-ui/core";
 import {
   Home,
   Favorite,
@@ -13,18 +13,20 @@ export const Navigation: FC = () => {
   const [value, setValue] = React.useState(0);
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      showLabels
-    >
-      <StyleNavigation label="Home" icon={<Home />} />
-      <StyleNavigation label="Favorites" icon={<Favorite />} />
-      <StyleNavigation label="Pages" icon={<Pages />} />
-      <StyleNavigation label="Feature" icon={<NewReleases />} />
-      <StyleNavigation label="Contact" icon={<ContactMail />} />
-    </BottomNavigation>
+    <AppBar color="default">
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+      >
+        <StyleNavigation label="Home" icon={<Home />} />
+        <StyleNavigation label="Favorites" icon={<Favorite />} />
+        <StyleNavigation label="Pages" icon={<Pages />} />
+        <StyleNavigation label="Feature" icon={<NewReleases />} />
+        <StyleNavigation label="Contact" icon={<ContactMail />} />
+      </BottomNavigation>
+    </AppBar>
   );
 };
