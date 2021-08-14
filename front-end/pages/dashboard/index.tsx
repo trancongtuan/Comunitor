@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Image from "next/image";
 import Loading from "@components/common/loading";
-const DashBoard: React.FC = () => {
+import { Layout } from "@components/Layout/Default";
+export default function DashBoard() {
   return (
-    <>
+    <Fragment>
       <h1>My Homepage</h1>
       <Image
         src={"/icon-512x512.png"}
@@ -14,8 +15,8 @@ const DashBoard: React.FC = () => {
         quality="85"
       />
       <p>Welcome to my homepage!</p>
-    </>
+    </Fragment>
   );
-};
+}
 
-export default DashBoard;
+DashBoard.Layout = Layout;
