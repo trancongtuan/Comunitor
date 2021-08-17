@@ -1,8 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import Image from "next/image";
 import Loading from "@components/common/loading";
 import { Layout } from "@components/Layout/Default";
-export default function DashBoard() {
+import { InferGetStaticPropsType } from "next";
+export default function DashBoard({name}: InferGetStaticPropsType<typeof getStaticProps>) {
+  useEffect(() => {
+    console.log('name', name)
+  }, [])
   return (
     <Fragment>
       <h1>My Homepage</h1>
@@ -20,3 +24,11 @@ export default function DashBoard() {
 }
 
 DashBoard.Layout = Layout;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      name: process.env.NEXT_PUBLIC_ANALYTICS_ID
+    }
+  }
+}

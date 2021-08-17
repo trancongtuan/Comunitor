@@ -11,7 +11,7 @@ export const Banner: FC = () => {
   useEffect(() => {
     setTitle(router.pathname.substring(1, router.pathname.length));
     if (!readRecord("accessToken")) {
-      router.push({ pathname: "Login" });
+      router.push({ pathname: "auth/Login" });
     }
   }, []);
 

@@ -12,7 +12,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { StyleContainer, StyleGutter, StyleInput } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "redux/actions/Login";
 import { AppState } from "redux/store";
@@ -23,6 +23,7 @@ import * as yup from "yup";
 import { useEffect } from "react";
 import { readRecord } from "pages/utils/localStorageService";
 import Loading from "@components/common/loading";
+import { Flex } from "@components/Flex/Flex";
 
 function Copyright() {
   return (
@@ -67,13 +68,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    width: '21%'
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -106,20 +107,15 @@ export default function SignInSide() {
   }, [auth.token]);
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <StyleContainer>
       <Loading loadingStatus={auth.loading}/>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <StyleGutter container>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography component="h1" variant="h3" color="textSecondary">
+            Login
           </Typography>
           <form className={classes.form} onSubmit={formik.handleSubmit}>
-            <TextField
+            <StyleInput
               variant="outlined"
               margin="normal"
               fullWidth
@@ -133,7 +129,7 @@ export default function SignInSide() {
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
             />
-            <TextField
+            <StyleInput
               variant="outlined"
               margin="normal"
               fullWidth
@@ -160,24 +156,12 @@ export default function SignInSide() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
             <Box mt={5}>
               <Copyright />
             </Box>
           </form>
         </div>
-      </Grid>
-    </Grid>
+      </StyleGutter>
+    </StyleContainer>
   );
 }
