@@ -1,15 +1,10 @@
 import * as React from "react";
 import {
-  TextField,
   Checkbox,
   Link,
-  Paper,
-  Avatar,
   Button,
   Box,
-  CssBaseline,
   FormControlLabel,
-  Grid,
   Typography,
 } from "@material-ui/core";
 import { StyleContainer, StyleGutter, StyleInput } from "./style";
@@ -23,7 +18,6 @@ import * as yup from "yup";
 import { useEffect } from "react";
 import { readRecord } from "pages/utils/localStorageService";
 import Loading from "@components/common/loading";
-import { Flex } from "@components/Flex/Flex";
 
 function Copyright() {
   return (

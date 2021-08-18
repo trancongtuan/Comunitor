@@ -12,7 +12,7 @@ export const StylexContainer = styled(Flex)`
   z-index: 1;
   background: url(//cdn.shopify.com/s/files/1/0433/5232/6300/files/breadcrumb-1.jpg?v=1602912370)
     center top no-repeat fixed;
-  margin: 50px 0 80px 0;
+  margin: 60px 0 80px 0;
   background-size: cover;
   &:before {
     position: absolute;

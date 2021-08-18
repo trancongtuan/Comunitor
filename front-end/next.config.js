@@ -19,6 +19,9 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS]], {
       },
     ];
   },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   webpack5: false,
   webpack(config, options) {
     if (!options.isServer) {

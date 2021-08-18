@@ -1,32 +1,59 @@
 import React, { FC } from "react";
-import { BottomNavigation, AppBar } from "@material-ui/core";
-import {
-  Home,
-  Favorite,
-  Pages,
-  NewReleases,
-  ContactMail,
-} from "@material-ui/icons";
-import { StyleNavigation } from "./style";
+import { BottomNavigation, AppBar, Toolbar } from "@material-ui/core";
+import { StyledNav, StyledLi, StyleLogo } from "./style";
+import { Flex } from "../stories/Flex";
+import Link from "next/link";
 
 export const Navigation: FC = () => {
   const [value, setValue] = React.useState(0);
 
   return (
-    <AppBar color="default">
-      <BottomNavigation
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        showLabels
-      >
-        <StyleNavigation label="Home" icon={<Home />} />
-        <StyleNavigation label="Favorites" icon={<Favorite />} />
-        <StyleNavigation label="Pages" icon={<Pages />} />
-        <StyleNavigation label="Feature" icon={<NewReleases />} />
-        <StyleNavigation label="Contact" icon={<ContactMail />} />
-      </BottomNavigation>
+    <AppBar style={{ backgroundColor: "#fff" }}>
+      <StyledNav flexDirection="row">
+        <Flex>
+          <StyledLi>
+            <ul>
+              <li key="1">
+                <Link href={`/dashboard`}>
+                  <a>Home</a>
+                </Link>
+              </li>
+              <li key="2">
+                <Link href={`/dashboard`}>
+                  <a>BATH SOAP</a>
+                </Link>
+              </li>
+              <li key="3">
+                <Link href={`/dashboard`}>
+                  <a>COLLECTIONS</a>
+                </Link>
+              </li>
+            </ul>
+            <StyleLogo>
+              <Link href={`/dashboard`}>
+                <img src="/icon-192x192.png" alt="" />
+              </Link>
+            </StyleLogo>
+            <ul>
+              <li key="1">
+                <Link href={`/dashboard`}>
+                  <a>Home</a>
+                </Link>
+              </li>
+              <li key="2">
+                <Link href={`/dashboard`}>
+                  <a>BATH SOAP</a>
+                </Link>
+              </li>
+              <li key="3">
+                <Link href={`/dashboard`}>
+                  <a>COLLECTIONS</a>
+                </Link>
+              </li>
+            </ul>
+          </StyledLi>
+        </Flex>
+      </StyledNav>
     </AppBar>
   );
 };
