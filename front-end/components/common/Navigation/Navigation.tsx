@@ -10,12 +10,12 @@ export const Navigation: FC = () => {
   return (
     <AppBar style={{ backgroundColor: "#fff" }}>
       <StyledNav flexDirection="row">
-        <Flex>
+        <Flex width="100%">
           <StyledLi>
             <ul>
               <li key="1">
                 <Link href={`/dashboard`}>
-                  <a>Home</a>
+                  <a>Homee</a>
                 </Link>
               </li>
               <li key="2">
@@ -35,17 +35,17 @@ export const Navigation: FC = () => {
               </Link>
             </StyleLogo>
             <ul>
-              <li key="1">
+              <li key="5">
                 <Link href={`/dashboard`}>
                   <a>Home</a>
                 </Link>
               </li>
-              <li key="2">
+              <li key="6">
                 <Link href={`/dashboard`}>
                   <a>BATH SOAP</a>
                 </Link>
               </li>
-              <li key="3">
+              <li key="7">
                 <Link href={`/dashboard`}>
                   <a>COLLECTIONS</a>
                 </Link>

@@ -40,14 +40,14 @@ export default function DashBoard({
           {messages.map((i) => {
             if (i.username === "other") {
               return (
-                <div className="message">
+                <div key={Math.random().toString(36)} className="message">
                   <p>{i.text}</p>
                   <span>{i.username}</span>
                 </div>
               );
             } else {
               return (
-                <div className="message mess-right">
+                <div key={Math.random().toString(36)} className="message mess-right">
                   <p>{i.text} </p>
                   <span>{i.username}</span>
                 </div>

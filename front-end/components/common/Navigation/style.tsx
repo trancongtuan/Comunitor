@@ -5,17 +5,19 @@ import { Flex } from "../stories/Flex";
 export const StyledNav = styled(Flex)`
   width: 1230px;
   max-width: 100%;
+  width: 100%;
   margin: auto;
   padding: 0 30px;
 `;
 
 export const StyledLi = styled.nav`
   display: flex;
+  width:100%;
   align-items: center;
   min-height: 65px;
   justify-content: space-between;
   ul:first-child {
-    justify-content: flex-start;
+    justify-content: flex-end;
     text-align: left;
   }
   ul {
@@ -62,7 +64,7 @@ export const StyleLogo = styled.div`
     -ms-interpolation-mode: bicubic;
     vertical-align: middle;
     height: auto;
-    max-width: 10%;
+    max-width: 7%;
     cursor: pointer;
   }
 `;
