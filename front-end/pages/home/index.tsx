@@ -24,64 +24,30 @@ export default function Home({
     <StyleChatContainer className="home">
       <Flex className="slide">
         <Slider {...settings}>
-          <StyledImageContainer>
-            <Flex className="slider-text">
-              <h1 className="slider-text__first">
-                Protects Sensitive Skin From Dryness
-              </h1>
-              <CenterFlex justifyContent="space-evenly">
-                <Link href="/dashboard">view all</Link> |
-                <Link href="/dashboard">view more</Link>
-              </CenterFlex>
-            </Flex>
-            <Image
-              src="/image-home.jpg"
-              alt="Picture of the author"
-              width={2000}
-              quality={"100"}
-              height={1000}
-            />
-          </StyledImageContainer>
-          <div>
-            <StyledImageContainer>
-              <Flex className="slider-text">
-                <h1 className="slider-text__first">
-                  Protects Sensitive Skin From Dryness
-                </h1>
-                <CenterFlex justifyContent="space-evenly">
-                  <Link href="/dashboard">view all</Link> |
-                  <Link href="/dashboard">view more</Link>
-                </CenterFlex>
-              </Flex>
-              <Image
-                src="/home-image.jpg"
-                alt="Picture of the author"
-                width={2000}
-                quality={"100"}
-                height={1000}
-              />
-            </StyledImageContainer>
-          </div>
-          <div>
-            <StyledImageContainer>
-              <Flex className="slider-text">
-                <h1 className="slider-text__first">
-                  Protects Sensitive Skin From Dryness
-                </h1>
-                <CenterFlex justifyContent="space-evenly">
-                  <Link href="/dashboard">view all</Link> |
-                  <Link href="/dashboard">view more</Link>
-                </CenterFlex>
-              </Flex>
-              <Image
-                src="/home-three.jpg"
-                alt="Picture of the author"
-                width={2000}
-                quality={"100"}
-                height={1000}
-              />
-            </StyledImageContainer>
-          </div>
+          {["image-home.jpg", "home-image.jpg", "home-three.jpg"].map(
+            (item, idx) => {
+              return (
+                <StyledImageContainer key={idx}>
+                  <Flex className="slider-text">
+                    <h1 className="slider-text__first">
+                      Protects Sensitive Skin From Dryness
+                    </h1>
+                    <CenterFlex justifyContent="space-evenly">
+                      <Link href={'/dashboard'}>view all</Link> |
+                      <Link href="/dashboard">view more</Link>
+                    </CenterFlex>
+                  </Flex>
+                  <Image
+                    src={`/${item}`}
+                    alt="Picture of the author"
+                    width={2000}
+                    quality={"100"}
+                    height={1000}
+                  />
+                </StyledImageContainer>
+              );
+            }
+          )}
         </Slider>
       </Flex>
     </StyleChatContainer>

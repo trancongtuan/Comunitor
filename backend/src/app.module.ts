@@ -12,12 +12,14 @@ import { AppService } from './app.service';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseStandardizedInterceptor } from './core/interceptors/response-standardized.interceptor';
 import { UsersController } from './modules/users/user.controller';
+import { ChatModule } from './modules/chat/chat.module';
 
 @Module({
   imports: [
     AuthModule,
     UserModule,
     RoleModule,
+    ChatModule,
     PermissionModule,
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(`${process.env.MONGO_URI}`, {
