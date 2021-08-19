@@ -5,7 +5,8 @@ import { Flex } from "../stories/Flex";
 import Link from "next/link";
 
 export const Navigation: FC = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState<string>('');
+  
 
   return (
     <AppBar style={{ backgroundColor: "#fff" }}>
@@ -15,17 +16,17 @@ export const Navigation: FC = () => {
             <ul>
               <li key="1">
                 <Link href={`/dashboard`}>
-                  <a>Homee</a>
+                  <a className={value === '1' ? 'active' : ''} onClick={()=> setValue('1') }>Home</a>
                 </Link>
               </li>
               <li key="2">
                 <Link href={`/dashboard`}>
-                  <a>BATH SOAP</a>
+                  <a className={value === '2' ? 'active' : ''} onClick={()=> setValue('2')}>BATH SOAP</a>
                 </Link>
               </li>
               <li key="3">
                 <Link href={`/dashboard`}>
-                  <a>COLLECTIONS</a>
+                  <a className={value === '3' ? 'active' : ''} onClick={()=> setValue('3')}>COLLECTIONS</a>
                 </Link>
               </li>
             </ul>
@@ -37,17 +38,17 @@ export const Navigation: FC = () => {
             <ul>
               <li key="5">
                 <Link href={`/dashboard`}>
-                  <a>Home</a>
+                  <a className={value === '4' ? 'active' : ''} onClick={()=> setValue('4')}>Page</a>
                 </Link>
               </li>
               <li key="6">
                 <Link href={`/dashboard`}>
-                  <a>BATH SOAP</a>
+                  <a className={value === '5' ? 'active' : ''} onClick={()=> setValue('5')}>News</a>
                 </Link>
               </li>
               <li key="7">
                 <Link href={`/dashboard`}>
-                  <a>COLLECTIONS</a>
+                  <a className={value === '6' ? 'active' : ''} onClick={()=> setValue('6')}>Contact</a>
                 </Link>
               </li>
             </ul>

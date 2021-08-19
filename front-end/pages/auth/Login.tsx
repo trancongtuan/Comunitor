@@ -96,7 +96,7 @@ export default function SignInSide() {
     if (!readRecord("accessToken")) {
       router.push({ pathname: "Login" });
     } else {
-      router.push({ pathname: "/dashboard" });
+      router.push({ pathname: "/home" });
     }
   }, [auth.token]);
 

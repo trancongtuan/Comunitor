@@ -11,7 +11,7 @@ const Home: React.FC = () => {
     if (!readRecord('accessToken')) {
       router.push({ pathname: "auth/Login" });
     } else {
-      router.push({pathname: "dashboard"})
+      router.push({pathname: "home"})
     }
   }, []);
 
